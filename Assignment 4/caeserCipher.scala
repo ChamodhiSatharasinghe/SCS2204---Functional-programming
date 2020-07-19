@@ -2,11 +2,11 @@ object caeserCipher extends App{
 
 val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-var s="MYNAMEISCHAMODHI"
+var s="HELLO CHAMODHI"
 
-val E=(c:Char,key:Int,a:String) => a((a.indexOf(c.toUpper)+key)%a.size)
+val E=(c:Char,key:Int,a:String) => if(c==' ') ' ' else a((a.indexOf(c.toUpper)+key)%a.size)
 
-val D=(c:Char,key:Int,a:String) => a((a.indexOf(c.toUpper)-key)%a.size)
+val D=(c:Char,key:Int,a:String) => if(c==' ') ' ' else a((a.indexOf(c.toUpper)-key)%a.size)
 
 val cipher=(algo:(Char,Int,String) => Char,s:String,key:Int,a:String)=>s.map(algo(_,key,a))
 
@@ -14,9 +14,9 @@ val ct=cipher(E,s,5,alphabet)
 
 val pt=cipher(D,ct,5,alphabet)
 
-println(s)
+println("Message : "+s)
 
-println(ct)
+println("Encrypted message : "+ct)
 
-println(pt)
+println("Decrypted message : "+pt)
 }
